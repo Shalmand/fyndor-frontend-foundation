@@ -14,6 +14,7 @@ import { Route as LibraryRouteImport } from './routes/library'
 import { Route as BrowseRouteImport } from './routes/browse'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ShowcaseStoryHeroRouteImport } from './routes/showcase.story-hero'
 import { Route as ShowcaseStoryCardRouteImport } from './routes/showcase.story-card'
 import { Route as ShowcaseSectionRouteImport } from './routes/showcase.section'
 import { Route as ReadStoryIdRouteImport } from './routes/read.$storyId'
@@ -43,6 +44,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ShowcaseStoryHeroRoute = ShowcaseStoryHeroRouteImport.update({
+  id: '/showcase/story-hero',
+  path: '/showcase/story-hero',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ShowcaseStoryCardRoute = ShowcaseStoryCardRouteImport.update({
   id: '/showcase/story-card',
   path: '/showcase/story-card',
@@ -68,6 +74,7 @@ export interface FileRoutesByFullPath {
   '/read/$storyId': typeof ReadStoryIdRoute
   '/showcase/section': typeof ShowcaseSectionRoute
   '/showcase/story-card': typeof ShowcaseStoryCardRoute
+  '/showcase/story-hero': typeof ShowcaseStoryHeroRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -78,6 +85,7 @@ export interface FileRoutesByTo {
   '/read/$storyId': typeof ReadStoryIdRoute
   '/showcase/section': typeof ShowcaseSectionRoute
   '/showcase/story-card': typeof ShowcaseStoryCardRoute
+  '/showcase/story-hero': typeof ShowcaseStoryHeroRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -89,6 +97,7 @@ export interface FileRoutesById {
   '/read/$storyId': typeof ReadStoryIdRoute
   '/showcase/section': typeof ShowcaseSectionRoute
   '/showcase/story-card': typeof ShowcaseStoryCardRoute
+  '/showcase/story-hero': typeof ShowcaseStoryHeroRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +110,7 @@ export interface FileRouteTypes {
     | '/read/$storyId'
     | '/showcase/section'
     | '/showcase/story-card'
+    | '/showcase/story-hero'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,6 +121,7 @@ export interface FileRouteTypes {
     | '/read/$storyId'
     | '/showcase/section'
     | '/showcase/story-card'
+    | '/showcase/story-hero'
   id:
     | '__root__'
     | '/'
@@ -121,6 +132,7 @@ export interface FileRouteTypes {
     | '/read/$storyId'
     | '/showcase/section'
     | '/showcase/story-card'
+    | '/showcase/story-hero'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -132,6 +144,7 @@ export interface RootRouteChildren {
   ReadStoryIdRoute: typeof ReadStoryIdRoute
   ShowcaseSectionRoute: typeof ShowcaseSectionRoute
   ShowcaseStoryCardRoute: typeof ShowcaseStoryCardRoute
+  ShowcaseStoryHeroRoute: typeof ShowcaseStoryHeroRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -171,6 +184,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/showcase/story-hero': {
+      id: '/showcase/story-hero'
+      path: '/showcase/story-hero'
+      fullPath: '/showcase/story-hero'
+      preLoaderRoute: typeof ShowcaseStoryHeroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/showcase/story-card': {
       id: '/showcase/story-card'
       path: '/showcase/story-card'
@@ -204,6 +224,7 @@ const rootRouteChildren: RootRouteChildren = {
   ReadStoryIdRoute: ReadStoryIdRoute,
   ShowcaseSectionRoute: ShowcaseSectionRoute,
   ShowcaseStoryCardRoute: ShowcaseStoryCardRoute,
+  ShowcaseStoryHeroRoute: ShowcaseStoryHeroRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
