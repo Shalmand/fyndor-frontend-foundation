@@ -249,3 +249,28 @@
   padding-inline: 1.25rem;
   max-width: var(--container-reader);
 }
+
+/* Soft horizontal rule using a subtle gradient instead of a hard 1px line. */
+@utility soft-rule {
+  height: 1px;
+  width: 100%;
+  background: var(--gradient-rule);
+  border: 0;
+}
+
+/* Subtle, almost imperceptible purple gradient — for the wordmark and accents. */
+@utility text-gradient-brand {
+  background: linear-gradient(180deg,
+    color-mix(in oklab, var(--foreground) 100%, transparent) 0%,
+    color-mix(in oklab, var(--brand-glow) 92%, var(--foreground)) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Soft surface glow used behind the brand mark for breathing room. */
+@utility brand-halo {
+  background: radial-gradient(60% 60% at 50% 50%,
+    color-mix(in oklab, var(--brand) 22%, transparent) 0%,
+    transparent 70%);
+}
