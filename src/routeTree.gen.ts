@@ -17,6 +17,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ShowcaseStoryHeroRouteImport } from './routes/showcase.story-hero'
 import { Route as ShowcaseStoryCardRouteImport } from './routes/showcase.story-card'
 import { Route as ShowcaseSectionRouteImport } from './routes/showcase.section'
+import { Route as ShowcaseCarouselRouteImport } from './routes/showcase.carousel'
 import { Route as ReadStoryIdRouteImport } from './routes/read.$storyId'
 
 const StudioRoute = StudioRouteImport.update({
@@ -59,6 +60,11 @@ const ShowcaseSectionRoute = ShowcaseSectionRouteImport.update({
   path: '/showcase/section',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ShowcaseCarouselRoute = ShowcaseCarouselRouteImport.update({
+  id: '/showcase/carousel',
+  path: '/showcase/carousel',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReadStoryIdRoute = ReadStoryIdRouteImport.update({
   id: '/read/$storyId',
   path: '/read/$storyId',
@@ -72,6 +78,7 @@ export interface FileRoutesByFullPath {
   '/library': typeof LibraryRoute
   '/studio': typeof StudioRoute
   '/read/$storyId': typeof ReadStoryIdRoute
+  '/showcase/carousel': typeof ShowcaseCarouselRoute
   '/showcase/section': typeof ShowcaseSectionRoute
   '/showcase/story-card': typeof ShowcaseStoryCardRoute
   '/showcase/story-hero': typeof ShowcaseStoryHeroRoute
@@ -83,6 +90,7 @@ export interface FileRoutesByTo {
   '/library': typeof LibraryRoute
   '/studio': typeof StudioRoute
   '/read/$storyId': typeof ReadStoryIdRoute
+  '/showcase/carousel': typeof ShowcaseCarouselRoute
   '/showcase/section': typeof ShowcaseSectionRoute
   '/showcase/story-card': typeof ShowcaseStoryCardRoute
   '/showcase/story-hero': typeof ShowcaseStoryHeroRoute
@@ -95,6 +103,7 @@ export interface FileRoutesById {
   '/library': typeof LibraryRoute
   '/studio': typeof StudioRoute
   '/read/$storyId': typeof ReadStoryIdRoute
+  '/showcase/carousel': typeof ShowcaseCarouselRoute
   '/showcase/section': typeof ShowcaseSectionRoute
   '/showcase/story-card': typeof ShowcaseStoryCardRoute
   '/showcase/story-hero': typeof ShowcaseStoryHeroRoute
@@ -108,6 +117,7 @@ export interface FileRouteTypes {
     | '/library'
     | '/studio'
     | '/read/$storyId'
+    | '/showcase/carousel'
     | '/showcase/section'
     | '/showcase/story-card'
     | '/showcase/story-hero'
@@ -119,6 +129,7 @@ export interface FileRouteTypes {
     | '/library'
     | '/studio'
     | '/read/$storyId'
+    | '/showcase/carousel'
     | '/showcase/section'
     | '/showcase/story-card'
     | '/showcase/story-hero'
@@ -130,6 +141,7 @@ export interface FileRouteTypes {
     | '/library'
     | '/studio'
     | '/read/$storyId'
+    | '/showcase/carousel'
     | '/showcase/section'
     | '/showcase/story-card'
     | '/showcase/story-hero'
@@ -142,6 +154,7 @@ export interface RootRouteChildren {
   LibraryRoute: typeof LibraryRoute
   StudioRoute: typeof StudioRoute
   ReadStoryIdRoute: typeof ReadStoryIdRoute
+  ShowcaseCarouselRoute: typeof ShowcaseCarouselRoute
   ShowcaseSectionRoute: typeof ShowcaseSectionRoute
   ShowcaseStoryCardRoute: typeof ShowcaseStoryCardRoute
   ShowcaseStoryHeroRoute: typeof ShowcaseStoryHeroRoute
@@ -205,6 +218,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShowcaseSectionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/showcase/carousel': {
+      id: '/showcase/carousel'
+      path: '/showcase/carousel'
+      fullPath: '/showcase/carousel'
+      preLoaderRoute: typeof ShowcaseCarouselRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/read/$storyId': {
       id: '/read/$storyId'
       path: '/read/$storyId'
@@ -222,6 +242,7 @@ const rootRouteChildren: RootRouteChildren = {
   LibraryRoute: LibraryRoute,
   StudioRoute: StudioRoute,
   ReadStoryIdRoute: ReadStoryIdRoute,
+  ShowcaseCarouselRoute: ShowcaseCarouselRoute,
   ShowcaseSectionRoute: ShowcaseSectionRoute,
   ShowcaseStoryCardRoute: ShowcaseStoryCardRoute,
   ShowcaseStoryHeroRoute: ShowcaseStoryHeroRoute,
