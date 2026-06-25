@@ -1,25 +1,26 @@
 import { cn } from "@/lib/utils";
-import { demoStateClasses, formatReads, kindLabel, statusLabel } from "./shared";
+import { demoStateClasses, kindLabel, statusLabel } from "./shared";
 import type { StoryCardProps, StoryCardSkeletonProps } from "./types";
 
 /**
- * Concept E — Fyndor Signature.
+ * Story Card v1.0 — Fyndor Signature.
  *
- * Original to Fyndor: the cover sits on a subtle floating plinth, with a
- * thin vertical brand rail tracing its left edge. A small kind chip
- * floats top-right. Title is serif, set just below the cover with a
- * single quiet line of metadata. On hover the brand rail brightens and
- * the cover gently lifts — the only animation. Calm, cinematic, ours.
+ * The official card for the Narrative Design System.
+ * Cover-first, frameless, almost invisible shadows.
+ * Hover gently zooms the cover and reveals the genre line.
+ * Calm, cinematic, timeless.
  */
 export function StoryCardSignature({
   story,
   author,
   universe,
+  genres,
   state,
   className,
 }: StoryCardProps) {
   const demo = demoStateClasses(state);
   const forceHover = state === "hover";
+  const genre = genres?.[0];
 
   return (
     <a
@@ -50,14 +51,18 @@ export function StoryCardSignature({
 
         <div
           className={cn(
-            "relative aspect-[2/3] overflow-hidden rounded-2xl bg-surface-2",
-            "shadow-[var(--shadow-cover)]",
-            "transition-transform duration-[var(--transition-base)]",
-            "group-hover/card:-translate-y-1.5",
-            forceHover && "-translate-y-1.5",
+            "relative aspect-[2/3] overflow-hidden rounded-[15px] bg-surface-2",
+            "shadow-card",
+            "transition-shadow duration-[var(--transition-base)]",
+            "group-hover/card:shadow-card-hover",
           )}
         >
-          <img src={story.coverUrl} alt="" loading="lazy" className="h-full w-full object-cover" />
+          <img
+            src={story.coverUrl}
+            alt=""
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-[var(--transition-base)] group-hover/card:scale-[1.03]"
+          />
 
           {/* Kind chip */}
           <span
@@ -90,16 +95,20 @@ export function StoryCardSignature({
               />
               {statusLabel(story.status)}
             </span>
-            <span className="opacity-80">{formatReads(story.readsCount)} reads</span>
+            <span
+              className="opacity-0 transition-opacity duration-[var(--transition-base)] group-hover/card:opacity-100"
+            >
+              {genre?.name}
+            </span>
           </div>
         </div>
       </div>
 
-      <div className="mt-4 pl-1">
+      <div className="mt-5 pl-1">
         <h3 className="font-display text-[1.15rem] leading-snug text-foreground">
           {story.title}
         </h3>
-        <p className="mt-1 truncate text-xs text-muted-foreground">
+        <p className="mt-2.5 truncate text-xs text-muted-foreground">
           {author?.displayName}
           {universe && (
             <>
@@ -116,10 +125,10 @@ export function StoryCardSignature({
 export function StoryCardSignatureSkeleton({ className }: StoryCardSkeletonProps) {
   return (
     <div className={cn("w-full", className)} aria-hidden>
-      <div className="aspect-[2/3] animate-pulse rounded-2xl bg-surface-2" />
-      <div className="mt-4 space-y-2 pl-1">
-        <div className="h-4 w-3/4 animate-pulse rounded bg-surface-2" />
-        <div className="h-2.5 w-1/2 animate-pulse rounded bg-surface-2" />
+      <div className="aspect-[2/3] animate-pulse rounded-[15px] bg-surface-2" />
+      <div className="mt-5 space-y-3 pl-1">
+        <div className="h-5 w-3/4 animate-pulse rounded bg-surface-2" />
+        <div className="h-3 w-1/2 animate-pulse rounded bg-surface-2" />
       </div>
     </div>
   );
