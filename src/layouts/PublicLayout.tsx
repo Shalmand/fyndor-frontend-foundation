@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { Search, Bell } from "lucide-react";
 import type { ReactNode } from "react";
-import { Logo } from "@/components/brand/Logo";
+import { Wordmark } from "@/components/brand/Wordmark";
+import { SiteFooter } from "@/components/brand/SiteFooter";
 import { NAV_PUBLIC } from "@/lib/constants";
 
 interface PublicLayoutProps {
@@ -10,23 +11,37 @@ interface PublicLayoutProps {
 
 /**
  * PublicLayout — marketing, discovery & unauthenticated browsing.
- * Cinematic header that fades into the page on scroll (extension point).
+ *
+ * Header has no hard divider: it floats over the page on a blurred surface
+ * and fades into content. Brand wordmark anchors the left, navigation is
+ * quiet and centered around storytelling vocabulary.
  */
 export function PublicLayout({ children }: PublicLayoutProps) {
   return (
     <div className="relative flex min-h-screen flex-col bg-background text-foreground">
-      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-xl">
-        <div className="container-wide flex h-16 items-center gap-8">
-          <Link to="/" className="flex shrink-0 items-center gap-2">
-            <Logo size={28} />
+      <header className="sticky top-0 z-40">
+        {/* Translucent surface — separation via blur + opacity, never a border. */}
+        <div className="absolute inset-0 -z-10 bg-background/60 backdrop-blur-xl" aria-hidden />
+        <div className="absolute inset-x-0 bottom-0 -z-10 h-px bg-gradient-to-r from-transparent via-foreground/10 to-transparent" aria-hidden />
+
+        <div className="container-wide flex h-20 items-center gap-10">
+          <Link
+            to="/"
+            className="group inline-flex shrink-0 items-center"
+            aria-label="Fyndor — Home"
+          >
+            <Wordmark size="lg" />
           </Link>
 
-          <nav className="hidden flex-1 items-center gap-6 md:flex">
+          <nav
+            aria-label="Primary"
+            className="hidden flex-1 items-center justify-center gap-9 md:flex"
+          >
             {NAV_PUBLIC.map((item) => (
               <Link
                 key={item.to}
                 to={item.to}
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                className="relative text-[0.9rem] font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground"
                 activeProps={{ className: "text-foreground" }}
               >
                 {item.label}
@@ -34,24 +49,25 @@ export function PublicLayout({ children }: PublicLayoutProps) {
             ))}
           </nav>
 
-          <div className="ml-auto flex items-center gap-2">
+          <div className="ml-auto flex items-center gap-1.5">
             <button
               type="button"
-              aria-label="Search"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              aria-label="Search stories"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full text-muted-foreground transition-all duration-200 hover:bg-foreground/5 hover:text-foreground"
             >
-              <Search className="h-4 w-4" />
+              <Search className="h-[1.05rem] w-[1.05rem]" />
             </button>
             <button
               type="button"
               aria-label="Notifications"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full text-muted-foreground transition-all duration-200 hover:bg-foreground/5 hover:text-foreground"
             >
-              <Bell className="h-4 w-4" />
+              <Bell className="h-[1.05rem] w-[1.05rem]" />
             </button>
             <Link
               to="/"
-              className="ml-2 inline-flex h-9 items-center justify-center rounded-full bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+              className="ml-2 inline-flex h-10 items-center justify-center rounded-full px-5 text-sm font-medium text-primary-foreground transition-all duration-200 hover:brightness-110"
+              style={{ backgroundImage: "var(--gradient-brand-soft)" }}
             >
               Sign in
             </Link>
@@ -61,20 +77,7 @@ export function PublicLayout({ children }: PublicLayoutProps) {
 
       <main className="flex-1">{children}</main>
 
-      <footer className="border-t border-border/60 bg-surface-0">
-        <div className="container-wide flex flex-col gap-4 py-10 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-3">
-            <Logo size={22} />
-            <span>© {new Date().getFullYear()} Fyndor. All stories belong to their authors.</span>
-          </div>
-          <nav className="flex flex-wrap gap-6">
-            <Link to="/" className="hover:text-foreground">About</Link>
-            <Link to="/" className="hover:text-foreground">Guidelines</Link>
-            <Link to="/" className="hover:text-foreground">Privacy</Link>
-            <Link to="/" className="hover:text-foreground">Terms</Link>
-          </nav>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
