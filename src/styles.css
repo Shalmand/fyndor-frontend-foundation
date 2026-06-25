@@ -92,6 +92,8 @@
   --shadow-soft: 0 1px 2px 0 oklch(0 0 0 / 0.35);
   --shadow-elevated: 0 8px 24px -10px oklch(0 0 0 / 0.5);
   --shadow-cover: 0 24px 60px -20px oklch(0 0 0 / 0.65);
+  --shadow-card: 0 4px 20px -8px oklch(0 0 0 / 0.22);
+  --shadow-card-hover: 0 8px 28px -10px oklch(0 0 0 / 0.32);
   --shadow-glow: 0 0 0 1px color-mix(in oklab, var(--brand) 28%, transparent),
                  0 10px 36px -12px color-mix(in oklab, var(--brand) 45%, transparent);
 
