@@ -14,6 +14,7 @@ import { Route as LibraryRouteImport } from './routes/library'
 import { Route as BrowseRouteImport } from './routes/browse'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ShowcaseStoryCardRouteImport } from './routes/showcase.story-card'
 import { Route as ReadStoryIdRouteImport } from './routes/read.$storyId'
 
 const StudioRoute = StudioRouteImport.update({
@@ -41,6 +42,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ShowcaseStoryCardRoute = ShowcaseStoryCardRouteImport.update({
+  id: '/showcase/story-card',
+  path: '/showcase/story-card',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReadStoryIdRoute = ReadStoryIdRouteImport.update({
   id: '/read/$storyId',
   path: '/read/$storyId',
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/library': typeof LibraryRoute
   '/studio': typeof StudioRoute
   '/read/$storyId': typeof ReadStoryIdRoute
+  '/showcase/story-card': typeof ShowcaseStoryCardRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/library': typeof LibraryRoute
   '/studio': typeof StudioRoute
   '/read/$storyId': typeof ReadStoryIdRoute
+  '/showcase/story-card': typeof ShowcaseStoryCardRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +79,7 @@ export interface FileRoutesById {
   '/library': typeof LibraryRoute
   '/studio': typeof StudioRoute
   '/read/$storyId': typeof ReadStoryIdRoute
+  '/showcase/story-card': typeof ShowcaseStoryCardRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,8 +90,16 @@ export interface FileRouteTypes {
     | '/library'
     | '/studio'
     | '/read/$storyId'
+    | '/showcase/story-card'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/browse' | '/library' | '/studio' | '/read/$storyId'
+  to:
+    | '/'
+    | '/admin'
+    | '/browse'
+    | '/library'
+    | '/studio'
+    | '/read/$storyId'
+    | '/showcase/story-card'
   id:
     | '__root__'
     | '/'
@@ -91,6 +108,7 @@ export interface FileRouteTypes {
     | '/library'
     | '/studio'
     | '/read/$storyId'
+    | '/showcase/story-card'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -100,6 +118,7 @@ export interface RootRouteChildren {
   LibraryRoute: typeof LibraryRoute
   StudioRoute: typeof StudioRoute
   ReadStoryIdRoute: typeof ReadStoryIdRoute
+  ShowcaseStoryCardRoute: typeof ShowcaseStoryCardRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -139,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/showcase/story-card': {
+      id: '/showcase/story-card'
+      path: '/showcase/story-card'
+      fullPath: '/showcase/story-card'
+      preLoaderRoute: typeof ShowcaseStoryCardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/read/$storyId': {
       id: '/read/$storyId'
       path: '/read/$storyId'
@@ -156,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   LibraryRoute: LibraryRoute,
   StudioRoute: StudioRoute,
   ReadStoryIdRoute: ReadStoryIdRoute,
+  ShowcaseStoryCardRoute: ShowcaseStoryCardRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
