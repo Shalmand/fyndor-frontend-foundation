@@ -1,0 +1,3 @@
+# Feature modules go here.
+# Each subdirectory owns one product feature: components, hooks, types, mock fixtures.
+# Example: features/discovery/, features/reader/, features/studio/, features/library/.

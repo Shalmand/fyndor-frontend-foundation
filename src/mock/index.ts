@@ -1,0 +1,10 @@
+export { mockGenres } from "./genres";
+export { mockAuthors } from "./authors";
+export { mockFranchises } from "./franchises";
+export { mockUniverses } from "./universes";
+export { mockLoreCards } from "./loreCards";
+export { mockStories } from "./stories";
+export { mockReadingLists } from "./readingLists";
+export { mockComments } from "./comments";
+export { mockReviews } from "./reviews";
+export { mockNotifications } from "./notifications";

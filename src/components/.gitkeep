@@ -1,0 +1,4 @@
+# Reusable, presentational components.
+# - brand/   Fyndor mark, wordmark
+# - ui/      shadcn primitives
+# Future: cards/, covers/, navigation/, feedback/.
