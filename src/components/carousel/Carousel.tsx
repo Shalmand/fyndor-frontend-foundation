@@ -139,7 +139,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
         role="region"
         aria-roledescription="carousel"
         aria-labelledby={headingId}
-        className={cn("relative", className)}
+        className={cn("group/carousel relative", className)}
       >
         <span id={headingId} className="sr-only">
           {ariaLabel}
