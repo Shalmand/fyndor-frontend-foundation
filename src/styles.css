@@ -217,7 +217,17 @@
     background-color: color-mix(in oklab, var(--brand) 45%, transparent);
     color: var(--foreground);
   }
+
+  /* Accessibility — visible, calm keyboard focus across the app. */
+  :focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--background),
+                0 0 0 4px color-mix(in oklab, var(--brand) 70%, transparent);
+    border-radius: var(--radius-sm);
+    transition: box-shadow var(--transition-fast);
+  }
 }
+
 
 @utility container-wide {
   width: 100%;
