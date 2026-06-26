@@ -176,8 +176,9 @@ function ChapterSection({
           {chapter.title}
         </h1>
         <p className="mt-3 text-xs text-reader-muted">
-          {chapter.readingMinutes} min read · {chapter.words.toLocaleString()} words
+          {chapter.readingMinutes} min read · {chapter.words.toLocaleString("en-US")} words
         </p>
+
       </header>
 
       <div
