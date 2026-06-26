@@ -15,6 +15,7 @@ import { Route as BrowseRouteImport } from './routes/browse'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ShowcaseStoryHeroRouteImport } from './routes/showcase.story-hero'
+import { Route as ShowcaseStoryDetailRouteImport } from './routes/showcase.story-detail'
 import { Route as ShowcaseStoryCardRouteImport } from './routes/showcase.story-card'
 import { Route as ShowcaseSectionRouteImport } from './routes/showcase.section'
 import { Route as ShowcaseFranchiseCardRouteImport } from './routes/showcase.franchise-card'
@@ -51,6 +52,11 @@ const IndexRoute = IndexRouteImport.update({
 const ShowcaseStoryHeroRoute = ShowcaseStoryHeroRouteImport.update({
   id: '/showcase/story-hero',
   path: '/showcase/story-hero',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShowcaseStoryDetailRoute = ShowcaseStoryDetailRouteImport.update({
+  id: '/showcase/story-detail',
+  path: '/showcase/story-detail',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ShowcaseStoryCardRoute = ShowcaseStoryCardRouteImport.update({
@@ -102,6 +108,7 @@ export interface FileRoutesByFullPath {
   '/showcase/franchise-card': typeof ShowcaseFranchiseCardRoute
   '/showcase/section': typeof ShowcaseSectionRoute
   '/showcase/story-card': typeof ShowcaseStoryCardRoute
+  '/showcase/story-detail': typeof ShowcaseStoryDetailRoute
   '/showcase/story-hero': typeof ShowcaseStoryHeroRoute
 }
 export interface FileRoutesByTo {
@@ -117,6 +124,7 @@ export interface FileRoutesByTo {
   '/showcase/franchise-card': typeof ShowcaseFranchiseCardRoute
   '/showcase/section': typeof ShowcaseSectionRoute
   '/showcase/story-card': typeof ShowcaseStoryCardRoute
+  '/showcase/story-detail': typeof ShowcaseStoryDetailRoute
   '/showcase/story-hero': typeof ShowcaseStoryHeroRoute
 }
 export interface FileRoutesById {
@@ -133,6 +141,7 @@ export interface FileRoutesById {
   '/showcase/franchise-card': typeof ShowcaseFranchiseCardRoute
   '/showcase/section': typeof ShowcaseSectionRoute
   '/showcase/story-card': typeof ShowcaseStoryCardRoute
+  '/showcase/story-detail': typeof ShowcaseStoryDetailRoute
   '/showcase/story-hero': typeof ShowcaseStoryHeroRoute
 }
 export interface FileRouteTypes {
@@ -150,6 +159,7 @@ export interface FileRouteTypes {
     | '/showcase/franchise-card'
     | '/showcase/section'
     | '/showcase/story-card'
+    | '/showcase/story-detail'
     | '/showcase/story-hero'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -165,6 +175,7 @@ export interface FileRouteTypes {
     | '/showcase/franchise-card'
     | '/showcase/section'
     | '/showcase/story-card'
+    | '/showcase/story-detail'
     | '/showcase/story-hero'
   id:
     | '__root__'
@@ -180,6 +191,7 @@ export interface FileRouteTypes {
     | '/showcase/franchise-card'
     | '/showcase/section'
     | '/showcase/story-card'
+    | '/showcase/story-detail'
     | '/showcase/story-hero'
   fileRoutesById: FileRoutesById
 }
@@ -196,6 +208,7 @@ export interface RootRouteChildren {
   ShowcaseFranchiseCardRoute: typeof ShowcaseFranchiseCardRoute
   ShowcaseSectionRoute: typeof ShowcaseSectionRoute
   ShowcaseStoryCardRoute: typeof ShowcaseStoryCardRoute
+  ShowcaseStoryDetailRoute: typeof ShowcaseStoryDetailRoute
   ShowcaseStoryHeroRoute: typeof ShowcaseStoryHeroRoute
 }
 
@@ -241,6 +254,13 @@ declare module '@tanstack/react-router' {
       path: '/showcase/story-hero'
       fullPath: '/showcase/story-hero'
       preLoaderRoute: typeof ShowcaseStoryHeroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/showcase/story-detail': {
+      id: '/showcase/story-detail'
+      path: '/showcase/story-detail'
+      fullPath: '/showcase/story-detail'
+      preLoaderRoute: typeof ShowcaseStoryDetailRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/showcase/story-card': {
@@ -308,6 +328,7 @@ const rootRouteChildren: RootRouteChildren = {
   ShowcaseFranchiseCardRoute: ShowcaseFranchiseCardRoute,
   ShowcaseSectionRoute: ShowcaseSectionRoute,
   ShowcaseStoryCardRoute: ShowcaseStoryCardRoute,
+  ShowcaseStoryDetailRoute: ShowcaseStoryDetailRoute,
   ShowcaseStoryHeroRoute: ShowcaseStoryHeroRoute,
 }
 export const routeTree = rootRouteImport
