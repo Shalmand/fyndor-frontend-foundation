@@ -52,8 +52,8 @@ export function getCaretCoords(
   const mirror = document.createElement("div");
 
   for (const key of COPIED_STYLES) {
-    // @ts-expect-error — index access into CSSStyleDeclaration
-    mirror.style[key] = style[key];
+    (mirror.style as unknown as Record<string, string>)[key] =
+      (style as unknown as Record<string, string>)[key];
   }
   mirror.style.position = "absolute";
   mirror.style.visibility = "hidden";
