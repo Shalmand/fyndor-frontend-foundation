@@ -1,4 +1,4 @@
-import { PenLine, Clock } from "lucide-react";
+import { PenLine, Clock, Flame } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export interface ContinueWritingHeroProps {
@@ -10,6 +10,8 @@ export interface ContinueWritingHeroProps {
   lastEditedAt: string;
   /** Optional draft word count for soft context. */
   draftWordCount?: number;
+  /** Days in a row the author has written. Placeholder — mock-only. */
+  writingStreakDays?: number;
   onContinue?: () => void;
   className?: string;
 }
