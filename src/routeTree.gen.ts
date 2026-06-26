@@ -15,6 +15,7 @@ import { Route as BrowseRouteImport } from './routes/browse'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ShowcaseWritingSessionRouteImport } from './routes/showcase.writing-session'
+import { Route as ShowcaseWorldBuilderRouteImport } from './routes/showcase.world-builder'
 import { Route as ShowcaseStudioDashboardRouteImport } from './routes/showcase.studio-dashboard'
 import { Route as ShowcaseStoryWorldAutocompleteRouteImport } from './routes/showcase.story-world-autocomplete'
 import { Route as ShowcaseStoryWorldRouteImport } from './routes/showcase.story-world'
@@ -58,6 +59,11 @@ const IndexRoute = IndexRouteImport.update({
 const ShowcaseWritingSessionRoute = ShowcaseWritingSessionRouteImport.update({
   id: '/showcase/writing-session',
   path: '/showcase/writing-session',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShowcaseWorldBuilderRoute = ShowcaseWorldBuilderRouteImport.update({
+  id: '/showcase/world-builder',
+  path: '/showcase/world-builder',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ShowcaseStudioDashboardRoute = ShowcaseStudioDashboardRouteImport.update({
@@ -152,6 +158,7 @@ export interface FileRoutesByFullPath {
   '/showcase/story-world': typeof ShowcaseStoryWorldRoute
   '/showcase/story-world-autocomplete': typeof ShowcaseStoryWorldAutocompleteRoute
   '/showcase/studio-dashboard': typeof ShowcaseStudioDashboardRoute
+  '/showcase/world-builder': typeof ShowcaseWorldBuilderRoute
   '/showcase/writing-session': typeof ShowcaseWritingSessionRoute
 }
 export interface FileRoutesByTo {
@@ -174,6 +181,7 @@ export interface FileRoutesByTo {
   '/showcase/story-world': typeof ShowcaseStoryWorldRoute
   '/showcase/story-world-autocomplete': typeof ShowcaseStoryWorldAutocompleteRoute
   '/showcase/studio-dashboard': typeof ShowcaseStudioDashboardRoute
+  '/showcase/world-builder': typeof ShowcaseWorldBuilderRoute
   '/showcase/writing-session': typeof ShowcaseWritingSessionRoute
 }
 export interface FileRoutesById {
@@ -197,6 +205,7 @@ export interface FileRoutesById {
   '/showcase/story-world': typeof ShowcaseStoryWorldRoute
   '/showcase/story-world-autocomplete': typeof ShowcaseStoryWorldAutocompleteRoute
   '/showcase/studio-dashboard': typeof ShowcaseStudioDashboardRoute
+  '/showcase/world-builder': typeof ShowcaseWorldBuilderRoute
   '/showcase/writing-session': typeof ShowcaseWritingSessionRoute
 }
 export interface FileRouteTypes {
@@ -221,6 +230,7 @@ export interface FileRouteTypes {
     | '/showcase/story-world'
     | '/showcase/story-world-autocomplete'
     | '/showcase/studio-dashboard'
+    | '/showcase/world-builder'
     | '/showcase/writing-session'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -243,6 +253,7 @@ export interface FileRouteTypes {
     | '/showcase/story-world'
     | '/showcase/story-world-autocomplete'
     | '/showcase/studio-dashboard'
+    | '/showcase/world-builder'
     | '/showcase/writing-session'
   id:
     | '__root__'
@@ -265,6 +276,7 @@ export interface FileRouteTypes {
     | '/showcase/story-world'
     | '/showcase/story-world-autocomplete'
     | '/showcase/studio-dashboard'
+    | '/showcase/world-builder'
     | '/showcase/writing-session'
   fileRoutesById: FileRoutesById
 }
@@ -288,6 +300,7 @@ export interface RootRouteChildren {
   ShowcaseStoryWorldRoute: typeof ShowcaseStoryWorldRoute
   ShowcaseStoryWorldAutocompleteRoute: typeof ShowcaseStoryWorldAutocompleteRoute
   ShowcaseStudioDashboardRoute: typeof ShowcaseStudioDashboardRoute
+  ShowcaseWorldBuilderRoute: typeof ShowcaseWorldBuilderRoute
   ShowcaseWritingSessionRoute: typeof ShowcaseWritingSessionRoute
 }
 
@@ -333,6 +346,13 @@ declare module '@tanstack/react-router' {
       path: '/showcase/writing-session'
       fullPath: '/showcase/writing-session'
       preLoaderRoute: typeof ShowcaseWritingSessionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/showcase/world-builder': {
+      id: '/showcase/world-builder'
+      path: '/showcase/world-builder'
+      fullPath: '/showcase/world-builder'
+      preLoaderRoute: typeof ShowcaseWorldBuilderRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/showcase/studio-dashboard': {
@@ -456,6 +476,7 @@ const rootRouteChildren: RootRouteChildren = {
   ShowcaseStoryWorldRoute: ShowcaseStoryWorldRoute,
   ShowcaseStoryWorldAutocompleteRoute: ShowcaseStoryWorldAutocompleteRoute,
   ShowcaseStudioDashboardRoute: ShowcaseStudioDashboardRoute,
+  ShowcaseWorldBuilderRoute: ShowcaseWorldBuilderRoute,
   ShowcaseWritingSessionRoute: ShowcaseWritingSessionRoute,
 }
 export const routeTree = rootRouteImport
