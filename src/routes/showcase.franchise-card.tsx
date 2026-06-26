@@ -3,20 +3,20 @@ import { PublicLayout } from "@/layouts/PublicLayout";
 import { Section } from "@/components/section";
 import { Carousel, CarouselItem } from "@/components/carousel";
 import {
-  UniverseCard,
-  UniverseCardSkeleton,
-  UniverseCardEmpty,
-} from "@/components/universe-card";
-import { mockUniverseCards } from "@/mock/universeCards";
+  FranchiseCard,
+  FranchiseCardSkeleton,
+  FranchiseCardEmpty,
+} from "@/components/franchise-card";
+import { mockFranchiseCards } from "@/mock/franchiseCards";
 
-export const Route = createFileRoute("/showcase/universe-card")({
+export const Route = createFileRoute("/showcase/franchise-card")({
   head: () => ({
     meta: [
-      { title: "Universe Card v1.0 — Fyndor NDS" },
+      { title: "Franchise Card v1.0 — Fyndor NDS" },
       {
         name: "description",
         content:
-          "The official Universe Card for the Fyndor Narrative Design System. A landscape editorial card that invites readers to explore an entire world.",
+          "The official Franchise Card for the Fyndor Narrative Design System. A landscape editorial card that invites readers into fanfiction inside an existing entertainment property.",
       },
       { name: "robots", content: "noindex" },
     ],
@@ -25,7 +25,8 @@ export const Route = createFileRoute("/showcase/universe-card")({
 });
 
 function ShowcasePage() {
-  const [ashen, arcane, nova, iron, hollow, ivory] = mockUniverseCards;
+  const [hp, got, naruto, op, pokemon, marvel, sw, witcher] =
+    mockFranchiseCards;
 
   return (
     <PublicLayout>
@@ -41,24 +42,32 @@ function ShowcasePage() {
             </span>
           </div>
           <h1 className="font-display text-display-md leading-[1.05] text-foreground sm:text-display-lg">
-            Universe Card <span className="text-gradient-brand">v1.0</span>
+            Franchise Card <span className="text-gradient-brand">v1.0</span>
           </h1>
           <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
-            A Universe is not a story — it is a world readers can step into.
-            Panoramic atmosphere, an editorial line, a handful of traits that
-            describe the world's identity. No statistics, no buttons. The
-            entire card is the doorway.
+            A Franchise Card is a doorway into fanfiction written inside an
+            existing entertainment property. Panoramic atmosphere, a short
+            editorial line, the media category, and an optional popularity
+            badge. The entire card is the link.
+          </p>
+          <p className="mt-4 max-w-2xl rounded-2xl bg-surface-1/60 px-5 py-4 text-sm leading-relaxed text-muted-foreground">
+            <span className="font-medium text-foreground/90">
+              Architecture note —
+            </span>{" "}
+            Original story worlds never appear in this component. They live
+            inside each Story via the Lore System and are never listed
+            globally on Fyndor. Only existing franchises belong here.
           </p>
         </header>
 
-        {/* 1. Default grid — six fictional universes */}
+        {/* 1. Default grid — eight known franchises */}
         <Section
-          title="Six worlds"
-          subtitle="Each universe carries its own atmosphere, palette and traits."
+          title="Eight franchises"
+          subtitle="Each card invites readers into the fanfiction written inside one existing world."
         >
           <div className="grid gap-8 lg:grid-cols-2">
-            {mockUniverseCards.map((u) => (
-              <UniverseCard key={u.id} universe={u} />
+            {mockFranchiseCards.map((f) => (
+              <FranchiseCard key={f.id} franchise={f} />
             ))}
           </div>
         </Section>
@@ -74,25 +83,25 @@ function ShowcasePage() {
               <p className="mb-3 text-[0.65rem] font-medium uppercase tracking-[0.22em] text-muted-foreground/70">
                 Default
               </p>
-              <UniverseCard universe={ashen} />
+              <FranchiseCard franchise={hp} />
             </div>
             <div>
               <p className="mb-3 text-[0.65rem] font-medium uppercase tracking-[0.22em] text-muted-foreground/70">
                 Hover
               </p>
-              <UniverseCard universe={arcane} state="hover" />
+              <FranchiseCard franchise={got} state="hover" />
             </div>
             <div>
               <p className="mb-3 text-[0.65rem] font-medium uppercase tracking-[0.22em] text-muted-foreground/70">
                 Focus
               </p>
-              <UniverseCard universe={nova} state="focus" />
+              <FranchiseCard franchise={naruto} state="focus" />
             </div>
             <div>
               <p className="mb-3 text-[0.65rem] font-medium uppercase tracking-[0.22em] text-muted-foreground/70">
                 Pressed
               </p>
-              <UniverseCard universe={iron} state="pressed" />
+              <FranchiseCard franchise={op} state="pressed" />
             </div>
           </div>
         </Section>
@@ -100,16 +109,16 @@ function ShowcasePage() {
         {/* 3. In a Carousel */}
         <Section
           title="In a Carousel"
-          subtitle="Universes scroll naturally inside the locked Carousel v1.0."
+          subtitle="Franchises scroll naturally inside the locked Carousel v1.0."
         >
-          <Carousel ariaLabel="Featured universes">
-            {mockUniverseCards.map((u) => (
+          <Carousel ariaLabel="Featured franchises">
+            {mockFranchiseCards.map((f) => (
               <CarouselItem
-                key={u.id}
+                key={f.id}
                 size="xl"
                 className="!max-w-none w-[82vw] sm:!w-[26rem] md:!w-[30rem] lg:!w-[34rem]"
               >
-                <UniverseCard universe={u} />
+                <FranchiseCard franchise={f} />
               </CarouselItem>
             ))}
           </Carousel>
@@ -122,18 +131,18 @@ function ShowcasePage() {
           tone="utility"
         >
           <div className="grid gap-8 lg:grid-cols-2">
-            <UniverseCardSkeleton />
-            <UniverseCardSkeleton />
+            <FranchiseCardSkeleton />
+            <FranchiseCardSkeleton />
           </div>
         </Section>
 
         {/* 5. Empty state */}
         <Section
           title="Empty"
-          subtitle="When no worlds are open yet, the surface stays calm."
+          subtitle="When no franchises are surfaced yet, the surface stays calm."
           tone="utility"
         >
-          <UniverseCardEmpty />
+          <FranchiseCardEmpty />
         </Section>
 
         {/* 6. Responsive frames */}
@@ -149,7 +158,7 @@ function ShowcasePage() {
               </p>
               <div className="overflow-hidden rounded-2xl bg-surface-1/40 p-5">
                 <div className="mx-auto w-full max-w-[19rem]">
-                  <UniverseCard universe={hollow} />
+                  <FranchiseCard franchise={pokemon} />
                 </div>
               </div>
             </div>
@@ -158,7 +167,7 @@ function ShowcasePage() {
                 Tablet
               </p>
               <div className="overflow-hidden rounded-2xl bg-surface-1/40 p-5">
-                <UniverseCard universe={ivory} />
+                <FranchiseCard franchise={marvel} />
               </div>
             </div>
             <div>
@@ -166,7 +175,7 @@ function ShowcasePage() {
                 Desktop
               </p>
               <div className="overflow-hidden rounded-2xl bg-surface-1/40 p-5">
-                <UniverseCard universe={ashen} />
+                <FranchiseCard franchise={sw} />
               </div>
             </div>
           </div>
@@ -176,9 +185,11 @@ function ShowcasePage() {
         <div className="mt-20">
           <div className="soft-rule mb-10" />
           <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            This component is locked as the official Universe Card v1.0 for the
-            Fyndor Narrative Design System. A doorway into a world — never a
-            story, never a database row.
+            Locked as the official Franchise Card v1.0 for the Fyndor
+            Narrative Design System. Existing entertainment franchises only —
+            original story worlds belong inside each story's Lore System and
+            are never listed globally. The eighth card, {witcher.name}, is
+            shown above in the default grid.
           </p>
         </div>
       </div>
