@@ -19,6 +19,7 @@ import { Route as ShowcaseStoryCardRouteImport } from './routes/showcase.story-c
 import { Route as ShowcaseSectionRouteImport } from './routes/showcase.section'
 import { Route as ShowcaseCollectionCardRouteImport } from './routes/showcase.collection-card'
 import { Route as ShowcaseCarouselRouteImport } from './routes/showcase.carousel'
+import { Route as ShowcaseAuthorCardRouteImport } from './routes/showcase.author-card'
 import { Route as ReadStoryIdRouteImport } from './routes/read.$storyId'
 
 const StudioRoute = StudioRouteImport.update({
@@ -71,6 +72,11 @@ const ShowcaseCarouselRoute = ShowcaseCarouselRouteImport.update({
   path: '/showcase/carousel',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ShowcaseAuthorCardRoute = ShowcaseAuthorCardRouteImport.update({
+  id: '/showcase/author-card',
+  path: '/showcase/author-card',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReadStoryIdRoute = ReadStoryIdRouteImport.update({
   id: '/read/$storyId',
   path: '/read/$storyId',
@@ -84,6 +90,7 @@ export interface FileRoutesByFullPath {
   '/library': typeof LibraryRoute
   '/studio': typeof StudioRoute
   '/read/$storyId': typeof ReadStoryIdRoute
+  '/showcase/author-card': typeof ShowcaseAuthorCardRoute
   '/showcase/carousel': typeof ShowcaseCarouselRoute
   '/showcase/collection-card': typeof ShowcaseCollectionCardRoute
   '/showcase/section': typeof ShowcaseSectionRoute
@@ -97,6 +104,7 @@ export interface FileRoutesByTo {
   '/library': typeof LibraryRoute
   '/studio': typeof StudioRoute
   '/read/$storyId': typeof ReadStoryIdRoute
+  '/showcase/author-card': typeof ShowcaseAuthorCardRoute
   '/showcase/carousel': typeof ShowcaseCarouselRoute
   '/showcase/collection-card': typeof ShowcaseCollectionCardRoute
   '/showcase/section': typeof ShowcaseSectionRoute
@@ -111,6 +119,7 @@ export interface FileRoutesById {
   '/library': typeof LibraryRoute
   '/studio': typeof StudioRoute
   '/read/$storyId': typeof ReadStoryIdRoute
+  '/showcase/author-card': typeof ShowcaseAuthorCardRoute
   '/showcase/carousel': typeof ShowcaseCarouselRoute
   '/showcase/collection-card': typeof ShowcaseCollectionCardRoute
   '/showcase/section': typeof ShowcaseSectionRoute
@@ -126,6 +135,7 @@ export interface FileRouteTypes {
     | '/library'
     | '/studio'
     | '/read/$storyId'
+    | '/showcase/author-card'
     | '/showcase/carousel'
     | '/showcase/collection-card'
     | '/showcase/section'
@@ -139,6 +149,7 @@ export interface FileRouteTypes {
     | '/library'
     | '/studio'
     | '/read/$storyId'
+    | '/showcase/author-card'
     | '/showcase/carousel'
     | '/showcase/collection-card'
     | '/showcase/section'
@@ -152,6 +163,7 @@ export interface FileRouteTypes {
     | '/library'
     | '/studio'
     | '/read/$storyId'
+    | '/showcase/author-card'
     | '/showcase/carousel'
     | '/showcase/collection-card'
     | '/showcase/section'
@@ -166,6 +178,7 @@ export interface RootRouteChildren {
   LibraryRoute: typeof LibraryRoute
   StudioRoute: typeof StudioRoute
   ReadStoryIdRoute: typeof ReadStoryIdRoute
+  ShowcaseAuthorCardRoute: typeof ShowcaseAuthorCardRoute
   ShowcaseCarouselRoute: typeof ShowcaseCarouselRoute
   ShowcaseCollectionCardRoute: typeof ShowcaseCollectionCardRoute
   ShowcaseSectionRoute: typeof ShowcaseSectionRoute
@@ -245,6 +258,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShowcaseCarouselRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/showcase/author-card': {
+      id: '/showcase/author-card'
+      path: '/showcase/author-card'
+      fullPath: '/showcase/author-card'
+      preLoaderRoute: typeof ShowcaseAuthorCardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/read/$storyId': {
       id: '/read/$storyId'
       path: '/read/$storyId'
@@ -262,6 +282,7 @@ const rootRouteChildren: RootRouteChildren = {
   LibraryRoute: LibraryRoute,
   StudioRoute: StudioRoute,
   ReadStoryIdRoute: ReadStoryIdRoute,
+  ShowcaseAuthorCardRoute: ShowcaseAuthorCardRoute,
   ShowcaseCarouselRoute: ShowcaseCarouselRoute,
   ShowcaseCollectionCardRoute: ShowcaseCollectionCardRoute,
   ShowcaseSectionRoute: ShowcaseSectionRoute,
