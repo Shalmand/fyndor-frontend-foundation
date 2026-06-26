@@ -5,7 +5,7 @@ import {
   worldBuilderMeta as defaultMeta,
   type WorldBuilderEntity,
   type WorldBuilderMeta,
-  type VisibilityRule,
+  
 } from "@/mock/worldBuilder";
 import { ENTITY_KINDS, ENTITY_META, type EntityKindFilter } from "./shared";
 import { EntityCard } from "./EntityCard";
