@@ -17,6 +17,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ShowcaseStoryHeroRouteImport } from './routes/showcase.story-hero'
 import { Route as ShowcaseStoryCardRouteImport } from './routes/showcase.story-card'
 import { Route as ShowcaseSectionRouteImport } from './routes/showcase.section'
+import { Route as ShowcaseFranchiseCardRouteImport } from './routes/showcase.franchise-card'
 import { Route as ShowcaseCollectionCardRouteImport } from './routes/showcase.collection-card'
 import { Route as ShowcaseCarouselRouteImport } from './routes/showcase.carousel'
 import { Route as ShowcaseAuthorCardRouteImport } from './routes/showcase.author-card'
@@ -62,6 +63,11 @@ const ShowcaseSectionRoute = ShowcaseSectionRouteImport.update({
   path: '/showcase/section',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ShowcaseFranchiseCardRoute = ShowcaseFranchiseCardRouteImport.update({
+  id: '/showcase/franchise-card',
+  path: '/showcase/franchise-card',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ShowcaseCollectionCardRoute = ShowcaseCollectionCardRouteImport.update({
   id: '/showcase/collection-card',
   path: '/showcase/collection-card',
@@ -93,6 +99,7 @@ export interface FileRoutesByFullPath {
   '/showcase/author-card': typeof ShowcaseAuthorCardRoute
   '/showcase/carousel': typeof ShowcaseCarouselRoute
   '/showcase/collection-card': typeof ShowcaseCollectionCardRoute
+  '/showcase/franchise-card': typeof ShowcaseFranchiseCardRoute
   '/showcase/section': typeof ShowcaseSectionRoute
   '/showcase/story-card': typeof ShowcaseStoryCardRoute
   '/showcase/story-hero': typeof ShowcaseStoryHeroRoute
@@ -107,6 +114,7 @@ export interface FileRoutesByTo {
   '/showcase/author-card': typeof ShowcaseAuthorCardRoute
   '/showcase/carousel': typeof ShowcaseCarouselRoute
   '/showcase/collection-card': typeof ShowcaseCollectionCardRoute
+  '/showcase/franchise-card': typeof ShowcaseFranchiseCardRoute
   '/showcase/section': typeof ShowcaseSectionRoute
   '/showcase/story-card': typeof ShowcaseStoryCardRoute
   '/showcase/story-hero': typeof ShowcaseStoryHeroRoute
@@ -122,6 +130,7 @@ export interface FileRoutesById {
   '/showcase/author-card': typeof ShowcaseAuthorCardRoute
   '/showcase/carousel': typeof ShowcaseCarouselRoute
   '/showcase/collection-card': typeof ShowcaseCollectionCardRoute
+  '/showcase/franchise-card': typeof ShowcaseFranchiseCardRoute
   '/showcase/section': typeof ShowcaseSectionRoute
   '/showcase/story-card': typeof ShowcaseStoryCardRoute
   '/showcase/story-hero': typeof ShowcaseStoryHeroRoute
@@ -138,6 +147,7 @@ export interface FileRouteTypes {
     | '/showcase/author-card'
     | '/showcase/carousel'
     | '/showcase/collection-card'
+    | '/showcase/franchise-card'
     | '/showcase/section'
     | '/showcase/story-card'
     | '/showcase/story-hero'
@@ -152,6 +162,7 @@ export interface FileRouteTypes {
     | '/showcase/author-card'
     | '/showcase/carousel'
     | '/showcase/collection-card'
+    | '/showcase/franchise-card'
     | '/showcase/section'
     | '/showcase/story-card'
     | '/showcase/story-hero'
@@ -166,6 +177,7 @@ export interface FileRouteTypes {
     | '/showcase/author-card'
     | '/showcase/carousel'
     | '/showcase/collection-card'
+    | '/showcase/franchise-card'
     | '/showcase/section'
     | '/showcase/story-card'
     | '/showcase/story-hero'
@@ -181,6 +193,7 @@ export interface RootRouteChildren {
   ShowcaseAuthorCardRoute: typeof ShowcaseAuthorCardRoute
   ShowcaseCarouselRoute: typeof ShowcaseCarouselRoute
   ShowcaseCollectionCardRoute: typeof ShowcaseCollectionCardRoute
+  ShowcaseFranchiseCardRoute: typeof ShowcaseFranchiseCardRoute
   ShowcaseSectionRoute: typeof ShowcaseSectionRoute
   ShowcaseStoryCardRoute: typeof ShowcaseStoryCardRoute
   ShowcaseStoryHeroRoute: typeof ShowcaseStoryHeroRoute
@@ -244,6 +257,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShowcaseSectionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/showcase/franchise-card': {
+      id: '/showcase/franchise-card'
+      path: '/showcase/franchise-card'
+      fullPath: '/showcase/franchise-card'
+      preLoaderRoute: typeof ShowcaseFranchiseCardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/showcase/collection-card': {
       id: '/showcase/collection-card'
       path: '/showcase/collection-card'
@@ -285,6 +305,7 @@ const rootRouteChildren: RootRouteChildren = {
   ShowcaseAuthorCardRoute: ShowcaseAuthorCardRoute,
   ShowcaseCarouselRoute: ShowcaseCarouselRoute,
   ShowcaseCollectionCardRoute: ShowcaseCollectionCardRoute,
+  ShowcaseFranchiseCardRoute: ShowcaseFranchiseCardRoute,
   ShowcaseSectionRoute: ShowcaseSectionRoute,
   ShowcaseStoryCardRoute: ShowcaseStoryCardRoute,
   ShowcaseStoryHeroRoute: ShowcaseStoryHeroRoute,
