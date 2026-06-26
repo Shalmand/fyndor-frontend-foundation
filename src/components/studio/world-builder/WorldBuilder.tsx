@@ -339,8 +339,3 @@ function NoResults({ query, onClear }: { query: string; onClear: () => void }) {
   );
 }
 
-// Hide scrollbars on horizontal nav without adding a new global utility.
-declare global {
-  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-  interface VisibilityRuleDeclared extends Record<string, VisibilityRule> {}
-}
