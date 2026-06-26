@@ -8,3 +8,4 @@ export { mockReadingLists } from "./readingLists";
 export { mockComments } from "./comments";
 export { mockReviews } from "./reviews";
 export { mockNotifications } from "./notifications";
+export { mockCollections } from "./collections";
