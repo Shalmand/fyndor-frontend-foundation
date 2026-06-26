@@ -27,6 +27,7 @@ import { Route as ShowcaseSectionRouteImport } from './routes/showcase.section'
 import { Route as ShowcaseReadingRouteImport } from './routes/showcase.reading'
 import { Route as ShowcaseFranchiseCardRouteImport } from './routes/showcase.franchise-card'
 import { Route as ShowcaseCollectionCardRouteImport } from './routes/showcase.collection-card'
+import { Route as ShowcaseChapterManagerRouteImport } from './routes/showcase.chapter-manager'
 import { Route as ShowcaseCarouselRouteImport } from './routes/showcase.carousel'
 import { Route as ShowcaseAuthorCardRouteImport } from './routes/showcase.author-card'
 import { Route as ReadStoryIdRouteImport } from './routes/read.$storyId'
@@ -122,6 +123,11 @@ const ShowcaseCollectionCardRoute = ShowcaseCollectionCardRouteImport.update({
   path: '/showcase/collection-card',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ShowcaseChapterManagerRoute = ShowcaseChapterManagerRouteImport.update({
+  id: '/showcase/chapter-manager',
+  path: '/showcase/chapter-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ShowcaseCarouselRoute = ShowcaseCarouselRouteImport.update({
   id: '/showcase/carousel',
   path: '/showcase/carousel',
@@ -147,6 +153,7 @@ export interface FileRoutesByFullPath {
   '/read/$storyId': typeof ReadStoryIdRoute
   '/showcase/author-card': typeof ShowcaseAuthorCardRoute
   '/showcase/carousel': typeof ShowcaseCarouselRoute
+  '/showcase/chapter-manager': typeof ShowcaseChapterManagerRoute
   '/showcase/collection-card': typeof ShowcaseCollectionCardRoute
   '/showcase/franchise-card': typeof ShowcaseFranchiseCardRoute
   '/showcase/reading': typeof ShowcaseReadingRoute
@@ -170,6 +177,7 @@ export interface FileRoutesByTo {
   '/read/$storyId': typeof ReadStoryIdRoute
   '/showcase/author-card': typeof ShowcaseAuthorCardRoute
   '/showcase/carousel': typeof ShowcaseCarouselRoute
+  '/showcase/chapter-manager': typeof ShowcaseChapterManagerRoute
   '/showcase/collection-card': typeof ShowcaseCollectionCardRoute
   '/showcase/franchise-card': typeof ShowcaseFranchiseCardRoute
   '/showcase/reading': typeof ShowcaseReadingRoute
@@ -194,6 +202,7 @@ export interface FileRoutesById {
   '/read/$storyId': typeof ReadStoryIdRoute
   '/showcase/author-card': typeof ShowcaseAuthorCardRoute
   '/showcase/carousel': typeof ShowcaseCarouselRoute
+  '/showcase/chapter-manager': typeof ShowcaseChapterManagerRoute
   '/showcase/collection-card': typeof ShowcaseCollectionCardRoute
   '/showcase/franchise-card': typeof ShowcaseFranchiseCardRoute
   '/showcase/reading': typeof ShowcaseReadingRoute
@@ -219,6 +228,7 @@ export interface FileRouteTypes {
     | '/read/$storyId'
     | '/showcase/author-card'
     | '/showcase/carousel'
+    | '/showcase/chapter-manager'
     | '/showcase/collection-card'
     | '/showcase/franchise-card'
     | '/showcase/reading'
@@ -242,6 +252,7 @@ export interface FileRouteTypes {
     | '/read/$storyId'
     | '/showcase/author-card'
     | '/showcase/carousel'
+    | '/showcase/chapter-manager'
     | '/showcase/collection-card'
     | '/showcase/franchise-card'
     | '/showcase/reading'
@@ -265,6 +276,7 @@ export interface FileRouteTypes {
     | '/read/$storyId'
     | '/showcase/author-card'
     | '/showcase/carousel'
+    | '/showcase/chapter-manager'
     | '/showcase/collection-card'
     | '/showcase/franchise-card'
     | '/showcase/reading'
@@ -289,6 +301,7 @@ export interface RootRouteChildren {
   ReadStoryIdRoute: typeof ReadStoryIdRoute
   ShowcaseAuthorCardRoute: typeof ShowcaseAuthorCardRoute
   ShowcaseCarouselRoute: typeof ShowcaseCarouselRoute
+  ShowcaseChapterManagerRoute: typeof ShowcaseChapterManagerRoute
   ShowcaseCollectionCardRoute: typeof ShowcaseCollectionCardRoute
   ShowcaseFranchiseCardRoute: typeof ShowcaseFranchiseCardRoute
   ShowcaseReadingRoute: typeof ShowcaseReadingRoute
@@ -432,6 +445,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShowcaseCollectionCardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/showcase/chapter-manager': {
+      id: '/showcase/chapter-manager'
+      path: '/showcase/chapter-manager'
+      fullPath: '/showcase/chapter-manager'
+      preLoaderRoute: typeof ShowcaseChapterManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/showcase/carousel': {
       id: '/showcase/carousel'
       path: '/showcase/carousel'
@@ -465,6 +485,7 @@ const rootRouteChildren: RootRouteChildren = {
   ReadStoryIdRoute: ReadStoryIdRoute,
   ShowcaseAuthorCardRoute: ShowcaseAuthorCardRoute,
   ShowcaseCarouselRoute: ShowcaseCarouselRoute,
+  ShowcaseChapterManagerRoute: ShowcaseChapterManagerRoute,
   ShowcaseCollectionCardRoute: ShowcaseCollectionCardRoute,
   ShowcaseFranchiseCardRoute: ShowcaseFranchiseCardRoute,
   ShowcaseReadingRoute: ShowcaseReadingRoute,
