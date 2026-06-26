@@ -78,13 +78,24 @@ function ReadingExperienceInner({
     [getChapter],
   );
 
+  const [currentChapterId, setCurrentChapterId] = useState(initialChapter.id);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const onScroll = () => {
+      const active = chapters.find((c) => {
+        const el = document.getElementById(`chapter-${c.id}`);
+        if (!el) return false;
+        const r = el.getBoundingClientRect();
+        return r.top <= 160 && r.bottom > 160;
+      });
+      if (active) setCurrentChapterId(active.id);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [chapters]);
   const currentChapter =
-    chapters.find((c) => {
-      const el = document.getElementById(`chapter-${c.id}`);
-      if (!el) return false;
-      const r = el.getBoundingClientRect();
-      return r.top <= 120 && r.bottom > 120;
-    }) ?? chapters[0];
+    chapters.find((c) => c.id === currentChapterId) ?? chapters[0];
 
   return (
     <div className="min-h-screen bg-reader-bg text-reader-fg">
