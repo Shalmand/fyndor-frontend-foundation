@@ -29,6 +29,7 @@ export function ContinueWritingHero({
   chapterTitle,
   lastEditedAt,
   draftWordCount,
+  writingStreakDays,
   onContinue,
   className,
 }: ContinueWritingHeroProps) {
