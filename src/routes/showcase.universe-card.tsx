@@ -104,7 +104,11 @@ function ShowcasePage() {
         >
           <Carousel ariaLabel="Featured universes">
             {mockUniverseCards.map((u) => (
-              <CarouselItem key={u.id} size="xl">
+              <CarouselItem
+                key={u.id}
+                size="xl"
+                className="!max-w-none w-[82vw] sm:!w-[26rem] md:!w-[30rem] lg:!w-[34rem]"
+              >
                 <UniverseCard universe={u} />
               </CarouselItem>
             ))}
