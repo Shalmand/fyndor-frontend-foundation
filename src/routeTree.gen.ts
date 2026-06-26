@@ -14,6 +14,7 @@ import { Route as LibraryRouteImport } from './routes/library'
 import { Route as BrowseRouteImport } from './routes/browse'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ShowcaseWritingSessionRouteImport } from './routes/showcase.writing-session'
 import { Route as ShowcaseStudioDashboardRouteImport } from './routes/showcase.studio-dashboard'
 import { Route as ShowcaseStoryWorldRouteImport } from './routes/showcase.story-world'
 import { Route as ShowcaseStoryWizardRouteImport } from './routes/showcase.story-wizard'
@@ -51,6 +52,11 @@ const AdminRoute = AdminRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShowcaseWritingSessionRoute = ShowcaseWritingSessionRouteImport.update({
+  id: '/showcase/writing-session',
+  path: '/showcase/writing-session',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ShowcaseStudioDashboardRoute = ShowcaseStudioDashboardRouteImport.update({
@@ -138,6 +144,7 @@ export interface FileRoutesByFullPath {
   '/showcase/story-wizard': typeof ShowcaseStoryWizardRoute
   '/showcase/story-world': typeof ShowcaseStoryWorldRoute
   '/showcase/studio-dashboard': typeof ShowcaseStudioDashboardRoute
+  '/showcase/writing-session': typeof ShowcaseWritingSessionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -158,6 +165,7 @@ export interface FileRoutesByTo {
   '/showcase/story-wizard': typeof ShowcaseStoryWizardRoute
   '/showcase/story-world': typeof ShowcaseStoryWorldRoute
   '/showcase/studio-dashboard': typeof ShowcaseStudioDashboardRoute
+  '/showcase/writing-session': typeof ShowcaseWritingSessionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -179,6 +187,7 @@ export interface FileRoutesById {
   '/showcase/story-wizard': typeof ShowcaseStoryWizardRoute
   '/showcase/story-world': typeof ShowcaseStoryWorldRoute
   '/showcase/studio-dashboard': typeof ShowcaseStudioDashboardRoute
+  '/showcase/writing-session': typeof ShowcaseWritingSessionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -201,6 +210,7 @@ export interface FileRouteTypes {
     | '/showcase/story-wizard'
     | '/showcase/story-world'
     | '/showcase/studio-dashboard'
+    | '/showcase/writing-session'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -221,6 +231,7 @@ export interface FileRouteTypes {
     | '/showcase/story-wizard'
     | '/showcase/story-world'
     | '/showcase/studio-dashboard'
+    | '/showcase/writing-session'
   id:
     | '__root__'
     | '/'
@@ -241,6 +252,7 @@ export interface FileRouteTypes {
     | '/showcase/story-wizard'
     | '/showcase/story-world'
     | '/showcase/studio-dashboard'
+    | '/showcase/writing-session'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -262,6 +274,7 @@ export interface RootRouteChildren {
   ShowcaseStoryWizardRoute: typeof ShowcaseStoryWizardRoute
   ShowcaseStoryWorldRoute: typeof ShowcaseStoryWorldRoute
   ShowcaseStudioDashboardRoute: typeof ShowcaseStudioDashboardRoute
+  ShowcaseWritingSessionRoute: typeof ShowcaseWritingSessionRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -299,6 +312,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/showcase/writing-session': {
+      id: '/showcase/writing-session'
+      path: '/showcase/writing-session'
+      fullPath: '/showcase/writing-session'
+      preLoaderRoute: typeof ShowcaseWritingSessionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/showcase/studio-dashboard': {
@@ -414,17 +434,8 @@ const rootRouteChildren: RootRouteChildren = {
   ShowcaseStoryWizardRoute: ShowcaseStoryWizardRoute,
   ShowcaseStoryWorldRoute: ShowcaseStoryWorldRoute,
   ShowcaseStudioDashboardRoute: ShowcaseStudioDashboardRoute,
+  ShowcaseWritingSessionRoute: ShowcaseWritingSessionRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

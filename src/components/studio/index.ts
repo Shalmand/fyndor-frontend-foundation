@@ -14,3 +14,5 @@ export type {
 } from "./StoryFilters";
 export { StoriesEmptyState } from "./StoriesEmptyState";
 export type { StoriesEmptyStateProps } from "./StoriesEmptyState";
+export { WritingSession } from "./writing";
+export type { WritingSessionProps, AutosaveState } from "./writing";
