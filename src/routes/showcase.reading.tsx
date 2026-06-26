@@ -6,18 +6,22 @@ import {
   mockChapters,
 } from "@/mock/chapters";
 
-export const Route = createFileRoute("/read/$storyId")({
+export const Route = createFileRoute("/showcase/reading")({
   head: () => ({
     meta: [
-      { title: "Reading — Fyndor" },
-      { name: "description", content: "Read on Fyndor." },
+      { title: "Reading Experience v1.0 — Fyndor NDS" },
+      {
+        name: "description",
+        content:
+          "The official Fyndor Reading Experience. Distraction-free, immersive chapter reader with continuous reading flow.",
+      },
+      { name: "robots", content: "noindex" },
     ],
   }),
-  component: ReadRoute,
+  component: ShowcasePage,
 });
 
-function ReadRoute() {
-  // Mock-only: route currently displays the showcased story for any id.
+function ShowcasePage() {
   const initial = mockChapters[firstChapterId];
   return (
     <ReadingExperience
