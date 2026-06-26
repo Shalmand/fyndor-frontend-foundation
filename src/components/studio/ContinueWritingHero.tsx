@@ -1,4 +1,4 @@
-import { PenLine, Clock } from "lucide-react";
+import { PenLine, Clock, Flame } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export interface ContinueWritingHeroProps {
@@ -10,6 +10,8 @@ export interface ContinueWritingHeroProps {
   lastEditedAt: string;
   /** Optional draft word count for soft context. */
   draftWordCount?: number;
+  /** Days in a row the author has written. Placeholder — mock-only. */
+  writingStreakDays?: number;
   onContinue?: () => void;
   className?: string;
 }
@@ -27,6 +29,7 @@ export function ContinueWritingHero({
   chapterTitle,
   lastEditedAt,
   draftWordCount,
+  writingStreakDays,
   onContinue,
   className,
 }: ContinueWritingHeroProps) {
@@ -81,16 +84,23 @@ export function ContinueWritingHero({
                 Chapter {chapterIndex} · {chapterTitle}
               </span>
             </p>
-            <p className="mt-2 inline-flex items-center gap-2 text-xs text-muted-foreground">
-              <Clock className="h-3.5 w-3.5" aria-hidden />
-              <span>Last edited {formatLastEdited(lastEditedAt)}</span>
+            <p className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground">
+              <span className="inline-flex items-center gap-1.5">
+                <Clock className="h-3.5 w-3.5" aria-hidden />
+                Last edited {formatLastEdited(lastEditedAt)}
+              </span>
               {typeof draftWordCount === "number" && (
                 <>
-                  <span aria-hidden className="opacity-40">
-                    ·
-                  </span>
-                  <span>
-                    {draftWordCount.toLocaleString("en-US")} words in draft
+                  <span aria-hidden className="opacity-40">·</span>
+                  <span>{draftWordCount.toLocaleString("en-US")} words in draft</span>
+                </>
+              )}
+              {typeof writingStreakDays === "number" && writingStreakDays > 0 && (
+                <>
+                  <span aria-hidden className="opacity-40">·</span>
+                  <span className="inline-flex items-center gap-1.5 text-foreground/80">
+                    <Flame className="h-3.5 w-3.5 text-amber-300" aria-hidden />
+                    {writingStreakDays}-day streak
                   </span>
                 </>
               )}
