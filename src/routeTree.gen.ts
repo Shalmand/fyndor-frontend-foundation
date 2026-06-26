@@ -23,6 +23,7 @@ import { Route as ShowcaseStoryWizardRouteImport } from './routes/showcase.story
 import { Route as ShowcaseStoryHeroRouteImport } from './routes/showcase.story-hero'
 import { Route as ShowcaseStoryDetailRouteImport } from './routes/showcase.story-detail'
 import { Route as ShowcaseStoryCardRouteImport } from './routes/showcase.story-card'
+import { Route as ShowcaseSeriesManagerRouteImport } from './routes/showcase.series-manager'
 import { Route as ShowcaseSectionRouteImport } from './routes/showcase.section'
 import { Route as ShowcaseReadingRouteImport } from './routes/showcase.reading'
 import { Route as ShowcaseFranchiseCardRouteImport } from './routes/showcase.franchise-card'
@@ -103,6 +104,11 @@ const ShowcaseStoryCardRoute = ShowcaseStoryCardRouteImport.update({
   path: '/showcase/story-card',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ShowcaseSeriesManagerRoute = ShowcaseSeriesManagerRouteImport.update({
+  id: '/showcase/series-manager',
+  path: '/showcase/series-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ShowcaseSectionRoute = ShowcaseSectionRouteImport.update({
   id: '/showcase/section',
   path: '/showcase/section',
@@ -158,6 +164,7 @@ export interface FileRoutesByFullPath {
   '/showcase/franchise-card': typeof ShowcaseFranchiseCardRoute
   '/showcase/reading': typeof ShowcaseReadingRoute
   '/showcase/section': typeof ShowcaseSectionRoute
+  '/showcase/series-manager': typeof ShowcaseSeriesManagerRoute
   '/showcase/story-card': typeof ShowcaseStoryCardRoute
   '/showcase/story-detail': typeof ShowcaseStoryDetailRoute
   '/showcase/story-hero': typeof ShowcaseStoryHeroRoute
@@ -182,6 +189,7 @@ export interface FileRoutesByTo {
   '/showcase/franchise-card': typeof ShowcaseFranchiseCardRoute
   '/showcase/reading': typeof ShowcaseReadingRoute
   '/showcase/section': typeof ShowcaseSectionRoute
+  '/showcase/series-manager': typeof ShowcaseSeriesManagerRoute
   '/showcase/story-card': typeof ShowcaseStoryCardRoute
   '/showcase/story-detail': typeof ShowcaseStoryDetailRoute
   '/showcase/story-hero': typeof ShowcaseStoryHeroRoute
@@ -207,6 +215,7 @@ export interface FileRoutesById {
   '/showcase/franchise-card': typeof ShowcaseFranchiseCardRoute
   '/showcase/reading': typeof ShowcaseReadingRoute
   '/showcase/section': typeof ShowcaseSectionRoute
+  '/showcase/series-manager': typeof ShowcaseSeriesManagerRoute
   '/showcase/story-card': typeof ShowcaseStoryCardRoute
   '/showcase/story-detail': typeof ShowcaseStoryDetailRoute
   '/showcase/story-hero': typeof ShowcaseStoryHeroRoute
@@ -233,6 +242,7 @@ export interface FileRouteTypes {
     | '/showcase/franchise-card'
     | '/showcase/reading'
     | '/showcase/section'
+    | '/showcase/series-manager'
     | '/showcase/story-card'
     | '/showcase/story-detail'
     | '/showcase/story-hero'
@@ -257,6 +267,7 @@ export interface FileRouteTypes {
     | '/showcase/franchise-card'
     | '/showcase/reading'
     | '/showcase/section'
+    | '/showcase/series-manager'
     | '/showcase/story-card'
     | '/showcase/story-detail'
     | '/showcase/story-hero'
@@ -281,6 +292,7 @@ export interface FileRouteTypes {
     | '/showcase/franchise-card'
     | '/showcase/reading'
     | '/showcase/section'
+    | '/showcase/series-manager'
     | '/showcase/story-card'
     | '/showcase/story-detail'
     | '/showcase/story-hero'
@@ -306,6 +318,7 @@ export interface RootRouteChildren {
   ShowcaseFranchiseCardRoute: typeof ShowcaseFranchiseCardRoute
   ShowcaseReadingRoute: typeof ShowcaseReadingRoute
   ShowcaseSectionRoute: typeof ShowcaseSectionRoute
+  ShowcaseSeriesManagerRoute: typeof ShowcaseSeriesManagerRoute
   ShowcaseStoryCardRoute: typeof ShowcaseStoryCardRoute
   ShowcaseStoryDetailRoute: typeof ShowcaseStoryDetailRoute
   ShowcaseStoryHeroRoute: typeof ShowcaseStoryHeroRoute
@@ -417,6 +430,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShowcaseStoryCardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/showcase/series-manager': {
+      id: '/showcase/series-manager'
+      path: '/showcase/series-manager'
+      fullPath: '/showcase/series-manager'
+      preLoaderRoute: typeof ShowcaseSeriesManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/showcase/section': {
       id: '/showcase/section'
       path: '/showcase/section'
@@ -490,6 +510,7 @@ const rootRouteChildren: RootRouteChildren = {
   ShowcaseFranchiseCardRoute: ShowcaseFranchiseCardRoute,
   ShowcaseReadingRoute: ShowcaseReadingRoute,
   ShowcaseSectionRoute: ShowcaseSectionRoute,
+  ShowcaseSeriesManagerRoute: ShowcaseSeriesManagerRoute,
   ShowcaseStoryCardRoute: ShowcaseStoryCardRoute,
   ShowcaseStoryDetailRoute: ShowcaseStoryDetailRoute,
   ShowcaseStoryHeroRoute: ShowcaseStoryHeroRoute,
