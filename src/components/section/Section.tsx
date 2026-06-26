@@ -1,3 +1,4 @@
+import { createElement, isValidElement } from "react";
 import type { ComponentType, ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
@@ -59,27 +60,24 @@ export interface SectionProps {
   id?: string;
 }
 
-function isComponent(
-  value: SectionProps["icon"],
-): value is ComponentType<{ className?: string }> {
-  return typeof value === "function";
-}
-
 function SectionIcon({ icon }: { icon: NonNullable<SectionProps["icon"]> }) {
-  if (isComponent(icon)) {
-    const Icon = icon;
+  // Pre-rendered node (e.g. <Badge />, custom JSX) — render quietly.
+  if (isValidElement(icon)) {
     return (
-      <span
-        aria-hidden
-        className="grid size-8 shrink-0 place-items-center rounded-full bg-surface-2/60 text-muted-foreground"
-      >
-        <Icon className="size-4" />
+      <span aria-hidden className="shrink-0">
+        {icon}
       </span>
     );
   }
+  // Component reference: function, forwardRef (lucide), or memo.
   return (
-    <span aria-hidden className="shrink-0">
-      {icon}
+    <span
+      aria-hidden
+      className="grid size-8 shrink-0 place-items-center rounded-full bg-surface-2/60 text-muted-foreground"
+    >
+      {createElement(icon as ComponentType<{ className?: string }>, {
+        className: "size-4",
+      })}
     </span>
   );
 }
