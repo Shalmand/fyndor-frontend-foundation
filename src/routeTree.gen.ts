@@ -14,6 +14,7 @@ import { Route as LibraryRouteImport } from './routes/library'
 import { Route as BrowseRouteImport } from './routes/browse'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ShowcaseStudioDashboardRouteImport } from './routes/showcase.studio-dashboard'
 import { Route as ShowcaseStoryWorldRouteImport } from './routes/showcase.story-world'
 import { Route as ShowcaseStoryHeroRouteImport } from './routes/showcase.story-hero'
 import { Route as ShowcaseStoryDetailRouteImport } from './routes/showcase.story-detail'
@@ -49,6 +50,11 @@ const AdminRoute = AdminRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShowcaseStudioDashboardRoute = ShowcaseStudioDashboardRouteImport.update({
+  id: '/showcase/studio-dashboard',
+  path: '/showcase/studio-dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ShowcaseStoryWorldRoute = ShowcaseStoryWorldRouteImport.update({
@@ -124,6 +130,7 @@ export interface FileRoutesByFullPath {
   '/showcase/story-detail': typeof ShowcaseStoryDetailRoute
   '/showcase/story-hero': typeof ShowcaseStoryHeroRoute
   '/showcase/story-world': typeof ShowcaseStoryWorldRoute
+  '/showcase/studio-dashboard': typeof ShowcaseStudioDashboardRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -142,6 +149,7 @@ export interface FileRoutesByTo {
   '/showcase/story-detail': typeof ShowcaseStoryDetailRoute
   '/showcase/story-hero': typeof ShowcaseStoryHeroRoute
   '/showcase/story-world': typeof ShowcaseStoryWorldRoute
+  '/showcase/studio-dashboard': typeof ShowcaseStudioDashboardRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -161,6 +169,7 @@ export interface FileRoutesById {
   '/showcase/story-detail': typeof ShowcaseStoryDetailRoute
   '/showcase/story-hero': typeof ShowcaseStoryHeroRoute
   '/showcase/story-world': typeof ShowcaseStoryWorldRoute
+  '/showcase/studio-dashboard': typeof ShowcaseStudioDashboardRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -181,6 +190,7 @@ export interface FileRouteTypes {
     | '/showcase/story-detail'
     | '/showcase/story-hero'
     | '/showcase/story-world'
+    | '/showcase/studio-dashboard'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -199,6 +209,7 @@ export interface FileRouteTypes {
     | '/showcase/story-detail'
     | '/showcase/story-hero'
     | '/showcase/story-world'
+    | '/showcase/studio-dashboard'
   id:
     | '__root__'
     | '/'
@@ -217,6 +228,7 @@ export interface FileRouteTypes {
     | '/showcase/story-detail'
     | '/showcase/story-hero'
     | '/showcase/story-world'
+    | '/showcase/studio-dashboard'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -236,6 +248,7 @@ export interface RootRouteChildren {
   ShowcaseStoryDetailRoute: typeof ShowcaseStoryDetailRoute
   ShowcaseStoryHeroRoute: typeof ShowcaseStoryHeroRoute
   ShowcaseStoryWorldRoute: typeof ShowcaseStoryWorldRoute
+  ShowcaseStudioDashboardRoute: typeof ShowcaseStudioDashboardRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -273,6 +286,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/showcase/studio-dashboard': {
+      id: '/showcase/studio-dashboard'
+      path: '/showcase/studio-dashboard'
+      fullPath: '/showcase/studio-dashboard'
+      preLoaderRoute: typeof ShowcaseStudioDashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/showcase/story-world': {
@@ -372,6 +392,7 @@ const rootRouteChildren: RootRouteChildren = {
   ShowcaseStoryDetailRoute: ShowcaseStoryDetailRoute,
   ShowcaseStoryHeroRoute: ShowcaseStoryHeroRoute,
   ShowcaseStoryWorldRoute: ShowcaseStoryWorldRoute,
+  ShowcaseStudioDashboardRoute: ShowcaseStudioDashboardRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
